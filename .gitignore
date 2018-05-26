@@ -1,0 +1,12 @@
+target
+.idea
+*.iml
+.classpath
+.settings
+node_modules
+private
+build
+lib
+npm-debug.log*
+src/main/resource/static.build
+package-lock.json
