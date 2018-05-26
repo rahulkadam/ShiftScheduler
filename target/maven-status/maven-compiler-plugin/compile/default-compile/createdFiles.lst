@@ -1,0 +1,5 @@
+com\astro\shiftscheduler\rest\HomeController.class
+com\astro\shiftscheduler\helper\ShiftServiceAdapter.class
+com\astro\shiftscheduler\Application.class
+com\astro\shiftscheduler\rest\ShiftController.class
+com\astro\shiftscheduler\dao\dto\Shift.class
