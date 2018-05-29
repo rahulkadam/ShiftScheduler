@@ -8,7 +8,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        var myRequest = new Request('/shift/list');
+        var myRequest = new Request('/shift/schedule?employee=10&dayspan=15&shift=2');
         console.log("myrequest :" + myRequest);
         return fetch(myRequest)
             .then((resp) => resp.json())
@@ -33,9 +33,10 @@ class ShiftList extends React.Component{
             <table>
             <tbody>
             <tr>
-            <th>First Name</th>
-        <th>Last Name</th>
-        <th>Description</th>
+         <th>Id</th>
+        <th>Time</th>
+        <th>shiftType</th>
+        <th>Employee</th>
         </tr>
         {employees}
         </tbody>
@@ -46,11 +47,14 @@ class ShiftList extends React.Component{
 
 class Shift extends React.Component{
     render() {
+     let time = new Date(this.props.shift.time.millis);
+
      return (
       <tr>
         <td>{this.props.shift.id}</td>
-        <td>{this.props.shift.type}</td>
-        <td>{this.props.shift.time}</td>
+        <td>{time.toDateString()}</td>
+        <td>{this.props.shift.shiftType}</td>
+        <td>{this.props.shift.employee.id} - {this.props.shift.employee.name} </td>
       </tr>
     )
   }

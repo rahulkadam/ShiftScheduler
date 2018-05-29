@@ -5,6 +5,7 @@ import com.astro.shiftscheduler.helper.ShiftServiceAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.xml.ws.Response;
@@ -21,4 +22,10 @@ public class ShiftController {
     public List<Shift> getShiftDetails() {
         return shiftServiceAdapter.getShifts();
     }
+
+    @GetMapping(path = "/schedule")
+    public List<Shift> scheduleShifts(@RequestParam("employee") int employeeCOunt , @RequestParam("dayspan") int daysSpan ,  @RequestParam("shift") int shiftCount) {
+        return shiftServiceAdapter.generateSchedule(employeeCOunt , daysSpan , shiftCount);
+    }
+
 }
