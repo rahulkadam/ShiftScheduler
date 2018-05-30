@@ -17,7 +17,6 @@ public class ShiftConfiguration {
     private int noOfShiftsPerDay;
     private int perWeek;
     private int startingDayOFWeek;
-    private Company company;
     private boolean active;
     private List<ShiftRule> rules;
 

@@ -18,13 +18,8 @@ public class ShiftController {
     @Autowired
     private ShiftServiceAdapter shiftServiceAdapter;
 
-    @GetMapping(path = "/list")
-    public List<Shift> getShiftDetails() {
-        return shiftServiceAdapter.getShifts();
-    }
-
     @GetMapping(path = "/schedule")
-    public List<Shift> scheduleShifts(@RequestParam("employee") int employeeCOunt , @RequestParam("dayspan") int daysSpan ,  @RequestParam("shift") int shiftCount) {
+    public List<Shift> scheduleShifts(@RequestParam("employee") int employeeCOunt , @RequestParam("dayspan") int daysSpan ,  @RequestParam("shift") int shiftCount) throws Exception {
         return shiftServiceAdapter.generateSchedule(employeeCOunt , daysSpan , shiftCount);
     }
 

@@ -8,5 +8,5 @@ private
 build
 lib
 npm-debug.log*
-src/main/resource/static/build
+src/main/resources/static/built
 package-lock.json

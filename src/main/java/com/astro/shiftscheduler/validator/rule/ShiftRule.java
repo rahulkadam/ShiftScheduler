@@ -2,6 +2,7 @@ package com.astro.shiftscheduler.validator.rule;
 
 import com.astro.shiftscheduler.dao.dto.Employee;
 import com.astro.shiftscheduler.dao.dto.Shift;
+import com.astro.shiftscheduler.dao.dto.ShiftConfiguration;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,7 @@ public abstract class ShiftRule {
     protected Long id;
     protected String name;
 
-    public boolean validate(List<Shift> shifts , Employee employee) {
+    public boolean validate(List<Shift> shifts , Employee employee , ShiftConfiguration config) {
         return true;
     }
 }
