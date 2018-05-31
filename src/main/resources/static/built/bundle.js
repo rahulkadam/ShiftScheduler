@@ -65,27 +65,91 @@
 	
 	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 	
-	        _this.state = { shifts: [] };
+	        _this.state = { shifts: [], employee: '', shiftCount: '', days: '', error: '' };
+	        _this.handleEmployeeChange = _this.handleEmployeeChange.bind(_this);
+	        _this.handleDaysChange = _this.handleDaysChange.bind(_this);
+	        _this.handleShiftChange = _this.handleShiftChange.bind(_this);
+	        _this.handleSubmit = _this.handleSubmit.bind(_this);
+	
 	        return _this;
 	    }
 	
 	    _createClass(App, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
+	        key: 'handleEmployeeChange',
+	        value: function handleEmployeeChange(event) {
+	            this.setState({ employee: event.target.value });
+	        }
+	    }, {
+	        key: 'handleDaysChange',
+	        value: function handleDaysChange(event) {
+	            this.setState({ days: event.target.value });
+	        }
+	    }, {
+	        key: 'handleShiftChange',
+	        value: function handleShiftChange(event) {
+	            this.setState({ shiftCount: event.target.value });
+	        }
+	    }, {
+	        key: 'handleSubmit',
+	        value: function handleSubmit(event) {
 	            var _this2 = this;
 	
-	            var myRequest = new Request('/shift/schedule?employee=10&dayspan=15&shift=2');
+	            var myRequest = new Request('/shift/schedule?employee=' + this.state.employee + '&dayspan=' + this.state.days + '&shift=' + this.state.shiftCount);
 	            console.log("myrequest :" + myRequest);
 	            return fetch(myRequest).then(function (resp) {
 	                return resp.json();
 	            }).then(function (response) {
-	                return _this2.setState({ shifts: response });
+	                return response.error ? _this2.setState({ shifts: [], error: response.message }) : _this2.setState({ shifts: response, error: '' });
+	            }).catch(function (err) {
+	                return _this2.setState({ error: err.message });
 	            });
+	        }
+	    }, {
+	        key: 'getInputPanel',
+	        value: function getInputPanel() {
+	            return React.createElement(
+	                'div',
+	                { style: { "marginTop": "15px" } },
+	                React.createElement(
+	                    'label',
+	                    null,
+	                    'Employee Count: ',
+	                    React.createElement('input', { type: 'text', name: 'employee', value: this.state.employee, onChange: this.handleEmployeeChange })
+	                ),
+	                React.createElement(
+	                    'label',
+	                    null,
+	                    'No Of Days : ',
+	                    React.createElement('input', { type: 'text', name: 'days', value: this.state.days, onChange: this.handleDaysChange })
+	                ),
+	                React.createElement(
+	                    'label',
+	                    null,
+	                    'Total Shift Per Day: ',
+	                    React.createElement('input', { type: 'text', name: 'Shift', value: this.state.shiftCount, onChange: this.handleShiftChange })
+	                ),
+	                React.createElement('input', { type: 'submit', value: 'Submit', style: { "marginLeft": "15px" }, onClick: this.handleSubmit })
+	            );
+	        }
+	    }, {
+	        key: 'showError',
+	        value: function showError() {
+	            return React.createElement(
+	                'div',
+	                null,
+	                this.state.error
+	            );
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            return React.createElement(ShiftList, { shifts: this.state.shifts });
+	            return React.createElement(
+	                'div',
+	                { style: { "marginLeft": "15px" } },
+	                this.getInputPanel(),
+	                this.state.shifts.length > 0 && React.createElement(ShiftList, { shifts: this.state.shifts }),
+	                this.state.error.length > 0 && this.showError()
+	            );
 	        }
 	    }]);
 	
@@ -109,7 +173,7 @@
 	            });
 	            return React.createElement(
 	                'table',
-	                null,
+	                { style: { "fontFamily": "arial, sans-serif", "borderCollapse": "collapse;width: 100%" } },
 	                React.createElement(
 	                    'tbody',
 	                    null,
@@ -118,22 +182,22 @@
 	                        null,
 	                        React.createElement(
 	                            'th',
-	                            null,
+	                            { style: { border: "1px solid #dddddd", "textAlign": "left", "padding": "8px" } },
 	                            'Id'
 	                        ),
 	                        React.createElement(
 	                            'th',
-	                            null,
+	                            { style: { border: "1px solid #dddddd", "textAlign": "left", "padding": "8px" } },
 	                            'Time'
 	                        ),
 	                        React.createElement(
 	                            'th',
-	                            null,
+	                            { style: { border: "1px solid #dddddd", "textAlign": "left", "padding": "8px" } },
 	                            'shiftType'
 	                        ),
 	                        React.createElement(
 	                            'th',
-	                            null,
+	                            { style: { border: "1px solid #dddddd", "textAlign": "left", "padding": "8px" } },
 	                            'Employee'
 	                        )
 	                    ),
@@ -165,22 +229,22 @@
 	                null,
 	                React.createElement(
 	                    'td',
-	                    null,
+	                    { style: { border: "1px solid #dddddd", "textAlign": "left", "padding": "8px" } },
 	                    this.props.shift.id
 	                ),
 	                React.createElement(
 	                    'td',
-	                    null,
+	                    { style: { border: "1px solid #dddddd", "textAlign": "left", "padding": "8px" } },
 	                    time.toDateString()
 	                ),
 	                React.createElement(
 	                    'td',
-	                    null,
+	                    { style: { border: "1px solid #dddddd", "textAlign": "left", "padding": "8px" } },
 	                    this.props.shift.shiftType
 	                ),
 	                React.createElement(
 	                    'td',
-	                    null,
+	                    { style: { border: "1px solid #dddddd", "textAlign": "left", "padding": "8px" } },
 	                    this.props.shift.employee.id,
 	                    ' - ',
 	                    this.props.shift.employee.name,
