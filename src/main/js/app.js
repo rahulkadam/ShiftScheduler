@@ -1,6 +1,7 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-class App extends React.Component {
+import  React , {Component} from  "react";
+import ReactDOM from "react-dom";
+import "./app.scss";
+class App extends Component {
 
     constructor(props) {
         super(props);

@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.xml.ws.Response;
 import java.util.List;
 
+/**
+ * Shift API for creating and managing shift
+ */
 @RestController
 @RequestMapping("/shift")
 public class ShiftController {

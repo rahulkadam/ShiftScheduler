@@ -75,8 +75,8 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v4.4.5</nodeVersion>
-                            <npmVersion>3.9.2</npmVersion>
+                            <nodeVersion>v8.9.2</nodeVersion>
+                            <npmVersion>5.5.1</npmVersion>
                         </configuration>
                     </execution>
                     <execution>
@@ -89,10 +89,22 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>webpack build</id>
+                        <id>webpack build1</id>
                         <goals>
                             <goal>webpack</goal>
                         </goals>
+                        <configuration>
+                            <arguments>--version</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>webpack build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build</arguments>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

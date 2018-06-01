@@ -14,6 +14,7 @@ public class Shift {
     private String type;
     private DateTime time;
     private int shiftType;
+    private int dayNumber;
     private Employee employee;
     private Date createdAt;
 }

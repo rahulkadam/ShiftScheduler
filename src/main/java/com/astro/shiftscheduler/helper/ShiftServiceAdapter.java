@@ -21,13 +21,26 @@ public class ShiftServiceAdapter {
     @Autowired
     private ShiftGenerator shiftGenerator;
 
+    /**
+     * Function to generateSchedule schedule based on provided information
+     * @param noOfEmployee
+     * @param noOfDays
+     * @param noOfShiftPerDay
+     * @return
+     * @throws Exception
+     */
     public List<Shift> generateSchedule(int noOfEmployee , int noOfDays , int noOfShiftPerDay) throws Exception {
         List<Employee> employeeList = generateDefaultEmployeeList(noOfEmployee);
         ShiftConfiguration config = generateDefaultShiftConfiguration(noOfDays, noOfShiftPerDay);
-        List<Shift> shifts = shiftGenerator.generate(config,employeeList);
+        List<Shift> shifts = shiftGenerator.generateSchedule(config,employeeList);
         return shifts;
     }
 
+    /**
+     * Generating dummy employee list based on no of employee
+     * @param n
+     * @return
+     */
     private List<Employee> generateDefaultEmployeeList(int n) {
         List<Employee> employeeList = new ArrayList<>();
         for(int i = 0; i< n ; i++) {
@@ -45,6 +58,10 @@ public class ShiftServiceAdapter {
         return config;
     }
 
+    /**
+     * Getting default Rule List which we should apply in first hand only
+     * @return
+     */
     private List<ShiftRule> getDefaultRuleList() {
         List<ShiftRule> ruleList = new ArrayList<>();
         ruleList.add(new AtMostShiftInDayRule());
