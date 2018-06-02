@@ -17,7 +17,7 @@ We can customize our rules and decide scheudle.
 To add Rules , we just need to create Rules and then add it into default Rule List.
 
 **Access**  
-Shift Scheduler service is deploye on EC2 :  
+Shift Scheduler service is deployed on EC2 :  
 [Shift Scheduler Access Url](http://34.208.45.239:9991/)
   
    
