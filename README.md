@@ -18,6 +18,6 @@ To add Rules , we just need to create Rules and then add it into default Rule Li
 
 **Access**  
 Shift Scheduler service is deploye on EC2 :  
-[AccessUrl](34.208.45.239:9991)
+[Shift Scheduler Access Url](http://34.208.45.239:9991/)
   
    
