@@ -41,7 +41,7 @@ public class ShiftServiceAdapter {
      * @param n
      * @return
      */
-    private List<Employee> generateDefaultEmployeeList(int n) {
+    public List<Employee> generateDefaultEmployeeList(int n) {
         List<Employee> employeeList = new ArrayList<>();
         for(int i = 0; i< n ; i++) {
             Employee employee = new Employee();
@@ -52,7 +52,7 @@ public class ShiftServiceAdapter {
         return employeeList;
     }
 
-    private ShiftConfiguration generateDefaultShiftConfiguration(int noOfDays , int noOfShiftPerDays) {
+    public ShiftConfiguration generateDefaultShiftConfiguration(int noOfDays , int noOfShiftPerDays) {
         List<ShiftRule> ruleList = getDefaultRuleList();
         ShiftConfiguration config = new ShiftConfiguration("Default generator" , noOfShiftPerDays , noOfDays , ruleList);
         return config;
