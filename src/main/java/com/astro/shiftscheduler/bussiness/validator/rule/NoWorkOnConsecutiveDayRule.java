@@ -1,9 +1,8 @@
-package com.astro.shiftscheduler.validator.rule;
+package com.astro.shiftscheduler.bussiness.validator.rule;
 
-import com.astro.shiftscheduler.dao.dto.Employee;
-import com.astro.shiftscheduler.dao.dto.Shift;
-import com.astro.shiftscheduler.dao.dto.ShiftConfiguration;
-import org.joda.time.DateTime;
+import com.astro.shiftscheduler.domain.Employee;
+import com.astro.shiftscheduler.domain.Shift;
+import com.astro.shiftscheduler.domain.ShiftConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;

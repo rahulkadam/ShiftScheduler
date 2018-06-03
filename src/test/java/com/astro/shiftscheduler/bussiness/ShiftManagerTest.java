@@ -1,10 +1,11 @@
 package com.astro.shiftscheduler.bussiness;
 
-import com.astro.shiftscheduler.dao.dto.Employee;
-import com.astro.shiftscheduler.dao.dto.Shift;
-import com.astro.shiftscheduler.dao.dto.ShiftConfiguration;
-import com.astro.shiftscheduler.helper.ShiftServiceAdapter;
-import com.astro.shiftscheduler.validator.RuleValidator;
+import com.astro.shiftscheduler.bussiness.validator.RuleValidator;
+import com.astro.shiftscheduler.domain.Employee;
+import com.astro.shiftscheduler.domain.Shift;
+import com.astro.shiftscheduler.domain.ShiftConfiguration;
+import com.astro.shiftscheduler.helper.ShiftHelper;
+import com.astro.shiftscheduler.bussiness.validator.RuleValidatorImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,32 +21,35 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ShiftGeneratorTest {
+public class ShiftManagerTest {
 
-    @Spy  private ShiftServiceAdapter shiftServiceAdapter;
-    @InjectMocks private ShiftGenerator shiftGenerator;
+    @InjectMocks private ShiftManager shiftManager;
     @Mock private RuleValidator ruleValidator;
+    @Mock private EmployeeManager employeeManager;
+    @Mock private ConfigurationManager configurationManager;
 
     @Test
     public void shouldGenerateShifts() throws Exception {
         Mockito.when(ruleValidator.validateRule(Mockito.any(),Mockito.any(),Mockito.any())).thenReturn(true);
-        List<Shift> list = shiftGenerator.generateSchedule(getConfig(3,3) ,getEmployee(9));
+        List<Shift> list = shiftManager.generateSchedule(getConfig(3,3) ,getEmployee(9));
         Assert.assertTrue(list.size() == 9);
     }
 
     @Test(expected = Exception.class)
     public void shouldFailedgenerateShifts() throws Exception {
         Mockito.when(ruleValidator.validateRule(Mockito.any(),Mockito.any(),Mockito.any())).thenReturn(true);
-        List<Shift> list = shiftGenerator.generateSchedule(getConfig(3,12) ,getEmployee(7));
+        List<Shift> list = shiftManager.generateSchedule(getConfig(3,12) ,getEmployee(7));
         Assert.assertTrue(list.size() == 9);
     }
 
     public ShiftConfiguration getConfig(int noOfDays , int shiftPerDay) {
-        return shiftServiceAdapter.generateDefaultShiftConfiguration(noOfDays, shiftPerDay);
+        Mockito.when(configurationManager.createConfiguration(noOfDays,shiftPerDay)).thenReturn(null);
+        return null;
     }
 
     public List<Employee> getEmployee(int n) {
-        return shiftServiceAdapter.generateDefaultEmployeeList(n);
+        Mockito.when(employeeManager.generateEmployeeListForNEmployee(n)).thenReturn(null);
+        return null;
     }
 
     private List<Shift> getShiftList(int n) {

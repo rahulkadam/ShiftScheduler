@@ -1,7 +1,7 @@
 package com.astro.shiftscheduler.helper;
 
-import com.astro.shiftscheduler.bussiness.ShiftGenerator;
-import com.astro.shiftscheduler.dao.dto.Shift;
+import com.astro.shiftscheduler.bussiness.ShiftManager;
+import com.astro.shiftscheduler.domain.Shift;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,25 +16,25 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ShiftServiceAdapterTest {
+public class ShiftHelperTest {
 
     @Mock public
-    ShiftGenerator shiftGenerator;
-    @InjectMocks public ShiftServiceAdapter shiftServiceAdapter;
+    ShiftManager shiftManager;
+    @InjectMocks public ShiftHelper shiftHelper;
 
     @Test
     public void shouldGenerateSchedule() throws Exception {
         List<Shift> li = getShiftList(8);
-        Mockito.when(shiftGenerator.generateSchedule(Mockito.any(), Mockito.any())).thenReturn(li);
-        List<Shift> list = shiftServiceAdapter.generateSchedule(10 , 2,4);
+        Mockito.when(shiftManager.generateSchedule(Mockito.any(), Mockito.any())).thenReturn(li);
+        List<Shift> list = shiftHelper.generateSchedule(10 , 2,4);
         Assert.assertTrue(list.size() == 8);
     }
 
     @Test(expected = Exception.class)
     public void shouldFailedGenerateSchedule() throws Exception {
         List<Shift> li = getShiftList(8);
-        Mockito.doThrow(new Exception("")).when(shiftGenerator.generateSchedule(Mockito.any(), Mockito.any()));
-        List<Shift> list = shiftServiceAdapter.generateSchedule(10 , 12,4);
+        Mockito.doThrow(new Exception("")).when(shiftManager.generateSchedule(Mockito.any(), Mockito.any()));
+        List<Shift> list = shiftHelper.generateSchedule(10 , 12,4);
     }
 
     private List<Shift> getShiftList(int n) {
