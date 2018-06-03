@@ -1,9 +1,9 @@
-package com.astro.shiftscheduler.validator;
+package com.astro.shiftscheduler.bussiness.validator;
 
-import com.astro.shiftscheduler.dao.dto.Employee;
-import com.astro.shiftscheduler.dao.dto.Shift;
-import com.astro.shiftscheduler.dao.dto.ShiftConfiguration;
-import com.astro.shiftscheduler.validator.rule.ShiftRule;
+import com.astro.shiftscheduler.domain.Employee;
+import com.astro.shiftscheduler.domain.Shift;
+import com.astro.shiftscheduler.domain.ShiftConfiguration;
+import com.astro.shiftscheduler.bussiness.validator.rule.ShiftRule;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  * Function to validate rules against shift/schedule and employee
  */
 @Component
-public class RuleValidator implements Validator {
+public class RuleValidatorImpl implements RuleValidator {
 
     /**
      * Functio should get List of rules in configuration.

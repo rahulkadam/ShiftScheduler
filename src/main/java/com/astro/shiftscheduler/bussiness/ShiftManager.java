@@ -1,9 +1,11 @@
 package com.astro.shiftscheduler.bussiness;
 
-import com.astro.shiftscheduler.dao.dto.Employee;
-import com.astro.shiftscheduler.dao.dto.Shift;
-import com.astro.shiftscheduler.dao.dto.ShiftConfiguration;
-import com.astro.shiftscheduler.validator.RuleValidator;
+import com.astro.shiftscheduler.bussiness.validator.RuleValidator;
+import com.astro.shiftscheduler.dao.repository.ShiftRepository;
+import com.astro.shiftscheduler.domain.Employee;
+import com.astro.shiftscheduler.domain.Shift;
+import com.astro.shiftscheduler.domain.ShiftConfiguration;
+import com.astro.shiftscheduler.bussiness.validator.RuleValidatorImpl;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,10 +13,13 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 @Component
-public class ShiftGenerator {
+public class ShiftManager {
 
     @Autowired
     private RuleValidator ruleValidator;
+
+    @Autowired
+    private ShiftRepository shiftRepository;
 
     /**
      * Function to generate schedule and applya rules also
@@ -63,12 +68,11 @@ public class ShiftGenerator {
                 if (isValid) {
                     Shift shift = new Shift();
                     shift.setType("Type : " + j);
-                    shift.setId((long) (Math.random() * 10000));
                     shift.setTime(date);
                     shift.setEmployee(employee);
-                    shift.setCreatedAt(new Date());
+                    shift.setCreatedAt(new DateTime());
                     shift.setShiftType(j + 1);
-                    shift.setDayNumber(i+1);
+                    shift.setDayNumber(i + 1);
                     scheduledShiftList.add(shift);
                     employeePool.remove(getRandomEmployeeIndex);
                     poolFailedForAllCount = 0;
@@ -79,6 +83,7 @@ public class ShiftGenerator {
             }
             date = date.plusDays(1);
         }
+        shiftRepository.saveAll(scheduledShiftList);
         return scheduledShiftList;
     }
 
