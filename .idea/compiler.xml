@@ -10,6 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="module-certview" target="1.8" />
       <module name="ShiftScheduler" target="1.8" />
     </bytecodeTargetLevel>
   </component>

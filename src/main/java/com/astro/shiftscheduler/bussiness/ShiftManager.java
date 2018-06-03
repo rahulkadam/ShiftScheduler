@@ -5,7 +5,6 @@ import com.astro.shiftscheduler.dao.repository.ShiftRepository;
 import com.astro.shiftscheduler.domain.Employee;
 import com.astro.shiftscheduler.domain.Shift;
 import com.astro.shiftscheduler.domain.ShiftConfiguration;
-import com.astro.shiftscheduler.bussiness.validator.RuleValidatorImpl;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

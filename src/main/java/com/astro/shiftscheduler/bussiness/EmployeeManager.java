@@ -24,7 +24,7 @@ public class EmployeeManager {
         List<Employee> employeeList = new ArrayList<>();
         for(int i = 0; i< n ; i++) {
             Employee employee = new Employee();
-            employee.setName("Employee-" + employee.getId());
+            employee.setName("Employee");
             employeeList.add(employee);
         }
         employeeRepository.saveAll(employeeList);
