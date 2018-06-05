@@ -7,12 +7,12 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan("com.astro.shiftscheduler")
+// @ComponentScan("com.astro.shiftscheduler")
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(WebApplicationType.class);
+        return application.sources(Application.class);
     }
 
     public static void main(String[] args) {

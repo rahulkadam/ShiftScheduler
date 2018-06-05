@@ -6,11 +6,12 @@ import com.astro.shiftscheduler.domain.auth.Role;
 import com.astro.shiftscheduler.domain.auth.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-
+@Service("UserService")
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
